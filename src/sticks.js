@@ -18,7 +18,42 @@ stick lengths     length of cut     sticks before cut
 - - - - - -         done              done
 */
 function solution(arr){
-  // TODO: Create the solution
+  let smallestStick = arr.length;
+  let numOfSticks = arr.length;
+  let sticksBefore = [];
+if(Array.isArray(arr)){
+  while(numOfSticks != 0){
+   let counter = 0;
+    for(let i = 0; i < arr.length; i++){
+      if(arr[i] !== '-'){
+        counter++;
+      }
+    }
+    if(numOfSticks !== counter){
+      numOfSticks = counter;
+    }
+    sticksBefore.push(numOfSticks);
+    for(let i = 0; i < arr.length; i++)  {
+        if(arr[i] !== '-'){
+          if(arr[i] < smallestStick){
+            smallestStick = arr[i];
+          }
+        }
+    }
+    for(let i = 0; i < arr.length; i++) {
+      if(arr[i] === smallestStick){
+        arr[i] = '-';
+        numOfSticks--;
+      }else{
+        arr[i] -= smallestStick;
+      }
+    }
+  }
+  console.log(sticksBefore);
+  return sticksBefore;
 }
+  return null;
+}
+solution([5,4,4,2,2,8]);
 
 module.exports = solution;
